@@ -187,7 +187,8 @@ def get_Inventory(sellerName, pageNo=1):
         
         timeSpent = datetime.fromtimestamp(time.process_time() - t)
         timeSpent = timeSpent.strftime('%M:%S')
-        print('\n \nPage ' + str(pageNo) + ' complete.')
+        print('\n' + str(timeSpent))
+        print(sellerName + ' page ' + str(pageNo) + ' of '+str(pages)+' complete.')
 
         for i, row in tqdm((listings.iterrows())):
             time.sleep(0)
