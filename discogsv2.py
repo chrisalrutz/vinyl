@@ -94,6 +94,12 @@ resp, content = client.request(access_token_url, 'POST', headers={'User-Agent': 
 # the oauth_token and the oauth_token_secret to disk, database or some
 # other local store. All further requests to the discogs.com API that require authentication
 # and must be made with these access_tokens.
+
+#######################################################################                                                     
+#    * oauth_token        = lTujUHkRdPPoBqdbkKNZUVpWXslyLPdELFkoILGL  
+#    * oauth_token_secret = cLxBzVadhTqCqbZfgBdVqtQDbAPJuwALtQXQthSE
+#######################################################################s
+
 access_token = dict(parse_qsl(content.decode('utf-8')))
 
 print(' == Access Token ==')
@@ -181,7 +187,7 @@ def get_Inventory(sellerName, pageNo=1):
         
         timeSpent = datetime.fromtimestamp(time.process_time() - t)
         timeSpent = timeSpent.strftime('%M:%S')
-        print('\n \nPage ' + str(pageNo) + ' complete. It took '+ str(timeSpent) + ' s.')
+        print('\n \nPage ' + str(pageNo) + ' complete.')
 
         for i, row in tqdm((listings.iterrows())):
             time.sleep(0)
@@ -268,9 +274,7 @@ chicago = ['Morpho_Chicago', 'RoundTripRecords' , 'ToneDeafRecords', 'Wild_Prair
 
 atlanta = []
 
-allem = philly + nj + wc + pa + dc + nyc + bm + wpaoh + pit + buffalo
-
-def get_City(city):
+def get_City(city=philly):
     listings = pd.DataFrame()
     for store in tqdm(city):
         if listings.empty == True:
@@ -280,7 +284,7 @@ def get_City(city):
             listings = pd.concat([listings, newstore])
     return listings
 
-listings = get_City(allem)
+listings = get_City()
 
 ## COMPRESS AND EXPORT LISTINGS
 
