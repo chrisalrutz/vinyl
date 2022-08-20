@@ -102,6 +102,7 @@ resp, content = client.request(access_token_url, 'POST', headers={'User-Agent': 
 
 access_token = dict(parse_qsl(content.decode('utf-8')))
 
+
 print(' == Access Token ==')
 print(f'    * oauth_token        = {access_token["oauth_token"]}')
 print(f'    * oauth_token_secret = {access_token["oauth_token_secret"]}')
@@ -182,7 +183,6 @@ def get_Inventory(sellerName, pageNo=1):
 
             #throttle every call 
             else:
-                time.sleep(.001)
                 pageNo +=1
         
         timeSpent = datetime.fromtimestamp(time.process_time() - t)
