@@ -164,6 +164,9 @@ def get_Inventory(sellerName, pageNo=1):
         pages = 100
 
     for pageNo in tqdm(range(pages)):
+        if (pageNo % 3 == 0):
+            print('pause 1 sec')
+            time.sleep(5)
         resp, content = client.request('https://api.discogs.com/users/' + str(sellerName) + '/inventory?per_page=100&page=' + str(pageNo + 1),
         headers={'User-Agent': user_agent})
         data = content.decode('utf-8')
@@ -231,11 +234,17 @@ nj = ['thewaxhut', 'innergrooverecs', 'skyvalley420', 'timzatz',
       'tunesonline', 'recordmuseum', 'phidelityrecords', 'Factory-Record',
       'vinyl_dinosaur', 'clariziomusic']
 
+de = ['recordsfromjupiter', 'rainbowrecordsde', "extendedplay19971"]
+
+md = ['rebrecords-md', "thevinylgarageus", 'admiralanalogs',
+      'FuzzyDogVintage', 'RecordExchangeofSS', 'YellowKShop',
+      'solarmountainrecords']
+
 wc = ['hopfidelity', 'electric_avenue']
 
 pa = ['EastonExchange', 'doubledeckerrecords', 'RECREV', 'Young-Ones-Records',
       'VertigoMusic449', 'WhitsEndTrading', 'impulsebuyrecords', 'dreaminghuman',
-      'Lititz_Music_Co.']
+      'Lititz_Music_Co.', 'MUSICALENERGIdotCOM']
 
 dc = ['ByrdlandRecords', 'Jointcustodydc', 'smashdc', 'RecordExchangeofSS', 'Mobius_Records',
       'donutshoppe', 'IRREst.2022']
@@ -274,7 +283,7 @@ chicago = ['Morpho_Chicago', 'RoundTripRecords' , 'ToneDeafRecords', 'Wild_Prair
            'cheapkissrecords', 'TheConservatoryVinyl', 'thedenrecords',
            'trustyspot']
 
-atlanta = []
+atl = ['Criminal-Rewind', 'ellaguru']
 
 def get_City(city=philly):
     listings = pd.DataFrame()
@@ -396,6 +405,8 @@ with open(filename, "wb") as f:
     headers={'User-Agent': user_agent})
     f.write(r.content)
 
+# sudo mount -o rw,intr 10.13.34.66:/CCGS /mnt/filestore
+# 
 
 user_agent = 'creaseCogs/1.0'
 
